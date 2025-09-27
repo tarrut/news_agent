@@ -16,6 +16,8 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       steps:
+        - uses: actions/checkout@v4
+        
         - name: Read Python version
           id: pyversion
           run: echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
