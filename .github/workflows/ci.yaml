@@ -32,4 +32,4 @@ jobs:
         run: uv run ruff check . --output-format=github
 
       - name: Run test with pytest
-        run: uv run pytest --maxfail=1 --disabel-warnings -q 
+        run: uv run pytest --maxfail=1 --disable-warnings -q
