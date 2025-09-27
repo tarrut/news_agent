@@ -12,21 +12,21 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.9, 3.10, 3.11, 3.12]
-
     steps:
       - uses: actions/checkout@v4
 
+      - name: Read Python version
+        id: pyversion
+        run: echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
+
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
-        run: uv sync
+        run: uv sync --locked --dev
 
       - name: Lint with ruff
         run: ruff check . --output-forma=github
