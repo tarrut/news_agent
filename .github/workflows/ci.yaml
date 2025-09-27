@@ -29,7 +29,7 @@ jobs:
         run: uv sync --locked --dev
 
       - name: Lint with ruff
-        run: ruff check . --output-forma=github
+        run: uv run ruff check . --output-forma=github
 
       - name: Run test with pytest
-        run: pytest --maxfail=1 --disabel-warnings -q 
+        run: uv run pytest --maxfail=1 --disabel-warnings -q 
