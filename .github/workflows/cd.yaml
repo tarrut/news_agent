@@ -1,0 +1,32 @@
+name: CD Pipeline
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  run-job:
+      runs-on: ubuntu-latest
+
+      env:
+        PASSWORD_MAIL = ${{ secrets.PASSWORD_MAIL }}
+        SENDER_MAIL = ${{ secrets.SENDER_MAIL }}
+        RECEIVER_MAIL = ${{ secrets.RECEIVER_MAIL }}
+        OPENAI_API_KEY = ${{ secrets.OPENAI_API_KEY }}
+
+      steps:
+        - name: Read Python version
+          id: pyversion
+          run: echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
+
+        - uses: actions/setup-python@v5
+          with:
+            python-version: ${{ env.PYTHON_VERSION }}
+
+        - uses: astral-sh/setup-uv@v6
+
+        - name: Install dependencies
+          run: uv sync --locked
+
+        - name: Run Code
+          run: uv run python src/main.py
