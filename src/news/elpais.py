@@ -1,6 +1,5 @@
 import feedparser
 from datetime import datetime, timezone
-import json
 
 INTERESTING_CATEGORIES = [
     "Política",
@@ -49,4 +48,4 @@ def fetch_elpais():
             interesting_entries.append(filter_entry(e, id))
             id += 1
     
-    return json.dumps(interesting_entries, indent=4, ensure_ascii=False)
+    return interesting_entries
