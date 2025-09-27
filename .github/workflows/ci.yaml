@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  lint-and-test:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,8 +28,28 @@ jobs:
       - name: Install dependencies
         run: uv sync --locked --dev
 
-      - name: Lint with ruff
+      - name: Lint with Ruff
         run: uv run ruff check . --output-format=github
 
-      - name: Run test with pytest
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read Python version
+        id: pyversion
+        run: echo "PYTHON_VERSION=$(cat .python-version)" >> $GITHUB_ENV
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync --locked --dev
+
+      - name: Run tests with pytest
         run: uv run pytest --maxfail=1 --disable-warnings -q
