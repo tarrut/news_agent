@@ -1,5 +1,5 @@
 import feedparser
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 INTERESTING_CATEGORIES = [
     "Política",
@@ -23,10 +23,10 @@ def is_interesting(entry):
 
 
 def is_today(entry):
-    dt = datetime.strptime(entry["published"], "%a, %d %b %Y %H:%M:%S %Z")
-    dt = dt.replace(tzinfo=timezone.utc)
-    today = datetime.now(timezone.utc).date()
-    return dt.date() == today
+    entry_time = datetime.strptime(entry["published"], "%a, %d %b %Y %H:%M:%S %Z")
+    entry_time = entry_time.replace(tzinfo=timezone.utc)
+    now = datetime.now(timezone.utc)
+    return (now - entry_time) <= timedelta(hours=24)
 
 
 def filter_entry(entry, id):
