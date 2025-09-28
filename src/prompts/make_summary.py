@@ -21,6 +21,10 @@ Your task is to generate a **markdown-formatted daily news recap** based on the 
     - The title
     - The summary
     - The link at the end
+    - With this format:
+        ### title
+        description
+        **link**
 
 ### Input news JSON:
 {prepare_news_for_prompt(news)}
