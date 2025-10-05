@@ -3,16 +3,12 @@ import datetime as dt
 
 from mail import send_mail
 from agent import get_mail_message
-from news.elpais import fetch_elpais
-from news.diarisabadell import fetch_diari_sabadell
-from news.ara import fetch_ara
+from news_fetcher import NewsFetcher
 
 load_dotenv()
 
-news = []
-news.append(fetch_elpais())
-news.append(fetch_diari_sabadell())
-news.append(fetch_ara())
+news_fetcher = NewsFetcher()
+news = news_fetcher.get_news()
 
 today = dt.datetime.now()
 
