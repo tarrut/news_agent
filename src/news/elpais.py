@@ -1,6 +1,6 @@
 import feedparser
 
-from utils import is_today, filter_entry, is_interesting
+from news.utils import is_today, filter_entry, is_interesting
 
 INTERESTING_CATEGORIES = [
     "Política",

@@ -1,6 +1,6 @@
 import feedparser
 
-from utils import is_today, filter_entry
+from news.utils import is_today, filter_entry
 
 URL =  "https://www.diaridesabadell.com/feed"
 
