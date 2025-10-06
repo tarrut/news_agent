@@ -4,8 +4,8 @@ from news.ara import fetch_ara
 
 URLS = {
     "el_pais": fetch_elpais,
-    "ara": fetch_diari_sabadell,
-    "diari_sabadell": fetch_ara
+    "ara": fetch_ara,
+    "diari_sabadell": fetch_diari_sabadell
 }
 
 class NewsFetcher():
