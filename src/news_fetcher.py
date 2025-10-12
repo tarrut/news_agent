@@ -35,4 +35,14 @@ class NewsFetcher():
                     self.titulars[newspaper][id] = new["title"]
         
         return self.titulars
-            
+
+    def remove_new(self, newspaper, id):
+        if self.news and newspaper in self.news:
+            self.news[newspaper].pop(id, None)
+        
+        if self.titulars and newspaper in self.titulars:
+            self.titulars[newspaper].pop(id, None)
+    
+    def remove_news(self, news_to_delete):
+        for newspaper, id in news_to_delete:
+            self.remove_new(newspaper, id)
