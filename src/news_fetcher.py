@@ -29,8 +29,10 @@ class NewsFetcher():
             self.fetch_news()
 
         if not self.titulars:
-            for id, new in self.news.items():
-                self.titulars[id] = new["titular"]
+            for newspaper, news in self.news.items():
+                self.titulars[newspaper] = {}
+                for id, new in news.items():
+                    self.titulars[newspaper][id] = new["title"]
         
         return self.titulars
             

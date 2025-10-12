@@ -6,12 +6,12 @@ URL =  "https://www.diaridesabadell.com/feed"
 
 def fetch_diari_sabadell():
     feed = feedparser.parse(URL)
-    interesting_entries = []
+    interesting_entries = {}
 
     id = 1
     for e in feed.entries:
         if is_today(e):
-            interesting_entries.append(filter_entry(e, id))
+            interesting_entries[id] = filter_entry(e)
             id += 1
     
     return interesting_entries

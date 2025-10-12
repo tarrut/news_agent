@@ -19,12 +19,12 @@ URL = "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada"
 
 def fetch_elpais():
     feed = feedparser.parse(URL)
-    interesting_entries = []
+    interesting_entries = {}
 
     id = 1
     for e in feed.entries:
         if is_interesting(e, INTERESTING_CATEGORIES) and is_today(e):
-            interesting_entries.append(filter_entry(e, id))
+            interesting_entries[id] = filter_entry(e)
             id += 1
     
     return interesting_entries

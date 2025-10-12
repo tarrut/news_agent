@@ -18,8 +18,8 @@ def is_today(entry):
     return (now - entry_time) <= timedelta(hours=24)
 
 
-def filter_entry(entry, id_):
-    new = {"id": id_}
+def filter_entry(entry):
+    new = {}
     for key in ("link", "title", "summary"):
         value = entry.get(key)
         if value:
