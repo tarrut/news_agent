@@ -8,7 +8,7 @@ def is_interesting(entry, interesting_categories):
 
 
 def is_today(entry):
-    entry_time = parser.parse(entry["published"])
+    entry_time = parser.parse(entry["pubDate"])
 
     if entry_time.tzinfo is None:
         entry_time = entry_time.replace(tzinfo=timezone.utc)
