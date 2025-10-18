@@ -34,6 +34,9 @@ class NewsFetcher:
             list of dicts with the news of the newspaper RSS feed
         """
         response = requests.get(config["url"])
+        if response.status_code != 200:
+            return
+
         feed_processed = ElementTree.fromstring(response.content)
         feed_dict = etree_to_dict(feed_processed)
         news = feed_dict["rss"]["channel"]["item"]
