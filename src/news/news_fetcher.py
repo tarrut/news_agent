@@ -21,15 +21,15 @@ class NewsFetcher:
             news = self.read_newspaper(newspaper_id, config)
             self.selected_news.append(news)
 
-    def read_newspaper(self, newspaper_id, config):
+    def read_newspaper(self, newspaper_id: str, config: dict[dict]) -> list[dict]:
         """Reads a single RSS feed and extracts the news
 
         Args:
-            newspaper_id (str): Id of the newspaper
-            config (dict): Configuration for fetching the newspaper
+            newspaper_id: Id of the newspaper
+            config: Configuration for fetching the newspaper
 
         Returns:
-            (list[dict]) list of dicts with the news of the newspaper RSS feed
+            list of dicts with the news of the newspaper RSS feed
         """
         response = requests.get(config["url"])
         feed_processed = ElementTree.fromstring(response.content)

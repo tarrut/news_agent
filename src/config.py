@@ -2,11 +2,11 @@ import yaml
 import os
 from pathlib import Path
 
-def load_config():
+def load_config() -> dict[dict]:
     """Function for loading the configuration in .yml files
 
     Returns:
-        (dict) Dictionary with the configuration specified inside the config fodler
+        Dictionary with the configuration specified inside the config fodler
     """
 
     config = {}
