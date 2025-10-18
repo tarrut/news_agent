@@ -1,2 +1,8 @@
 diari_sabadell:
   url: "https://www.diaridesabadell.com/feed"
+
+ara:
+  url: "https://www.ara.cat/rss/"
+
+el_pais:
+  url: "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada"
