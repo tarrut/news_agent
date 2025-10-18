@@ -20,12 +20,25 @@ class NewsFilter:
 
 
     def filter_news_by_date(self):
-        self._raw_news = [new for new in self.raw_raw_news_news if is_today(new)]
+        self._raw_news = [new for new in self._raw_news if is_today(new)]
 
     
     def fix_news_format(self):
         id = 0
         for new in self._raw_news:
+
+            if "title" not in new.keys():
+                continue
+
+            if "link" not in new.keys():
+                continue
+
+            if "pubDate" not in new.keys():
+                continue
+
+            if "description" not in new.keys():
+                continue
+
             self.news[id] = {
                 "title": new["title"],
                 "link": new["link"],
