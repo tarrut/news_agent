@@ -2,6 +2,7 @@ import requests
 from xml.etree import ElementTree
 
 from utils import etree_to_dict
+from config import load_config
 
 class NewsFetcher:
     """Class for retreiving rss feeds of different newspapers
@@ -13,12 +14,8 @@ class NewsFetcher:
     def fetch(self):
         """Main method of the class that retrieves the feeds
         """
-        # TODO: remove this ad-hoc
-        newspapers_config = {
-            "diari_sabadell": { 
-                "url": "https://www.diaridesabadell.com/feed"
-            }
-        }
+        config = load_config()
+        newspapers_config = config["newspapers"]
 
         for newspaper_id, config in newspapers_config.items():
             news = self.read_newspaper(newspaper_id, config)
@@ -32,7 +29,7 @@ class NewsFetcher:
             config (dict): Configuration for fetching the newspaper
 
         Returns:
-            list of dicts with the news of the newspaper RSS feed
+            (list[dict]) list of dicts with the news of the newspaper RSS feed
         """
         response = requests.get(config["url"])
         feed_processed = ElementTree.fromstring(response.content)
