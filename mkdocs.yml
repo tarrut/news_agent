@@ -39,4 +39,4 @@ plugins:
 markdown_extensions:
   - admonition # allows callouts in the md files
   - toc: # table of contents
-    permalink: true
+      permalink: true
