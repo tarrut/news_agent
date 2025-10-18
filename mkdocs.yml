@@ -1,0 +1,42 @@
+site_name: News Agent
+# site_url: https://example.github.io/myproject/
+repo_url: https://github.com/tarrut/news_agent
+repo_name: tarrut/news_agent
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.expand
+    - navigation.sections
+    - navigation.tabs
+    - toc.integrate
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+
+plugins:
+  - search # includes a search bar
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: true # shows title of the file
+            show_source: true # shows source code
+            docstring_style: google # format of the docstrings
+            show_signature_annotations: true # 
+            show_docstring_description: true # shos descriptions of the code
+            heading_level: 2 # level of the headings (the highest level ones)
+            members_order: source # the docstrings appear in the order of source
+  - mermaid2
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+  - section-index
+
+markdown_extensions:
+  - admonition # allows callouts in the md files
+  - toc: # table of contents
+    permalink: true
