@@ -27,23 +27,14 @@ class NewsFilter:
         id = 0
         for new in self._raw_news:
 
-            if "title" not in new.keys():
-                continue
-
-            if "link" not in new.keys():
-                continue
-
-            if "pubDate" not in new.keys():
-                continue
-
-            if "description" not in new.keys():
+            if not all(k in new for k in ("title", "link", "pubDate", "description")):
                 continue
 
             self.news[id] = {
-                "title": new["title"],
-                "link": new["link"],
-                "publicated": new["pubDate"],
-                "description": new["description"],
-                "newspaper": new["newspaper"]
+                "title": new.get("title"),
+                "link": new.get("link"),
+                "publicated": new.get("pubDate"),
+                "description": new.get("description"),
+                "newspaper": new.get("newspaper")
             }
             id += 1
