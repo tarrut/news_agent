@@ -2,10 +2,6 @@ from collections import defaultdict
 from datetime import datetime, timezone, timedelta
 from dateutil import parser
 
-def is_interesting(entry, interesting_categories):
-    categories = [t['term'] for t in entry.get('tags', [])]
-    return any(cat in interesting_categories for cat in categories) and is_today
-
 
 def is_today(entry):
     entry_time = parser.parse(entry["pubDate"])
@@ -17,15 +13,6 @@ def is_today(entry):
     
     now = datetime.now(timezone.utc)
     return (now - entry_time) <= timedelta(hours=24)
-
-
-def filter_entry(entry):
-    new = {}
-    for key in ("link", "title", "summary"):
-        value = entry.get(key)
-        if value:
-            new[key] = value
-    return new
 
 
 def etree_to_dict(t):
