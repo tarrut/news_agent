@@ -23,6 +23,18 @@ class NewsFetcher:
             self.selected_news.extend(news)
 
 
+    def get_news(self) -> list[dict]:
+        """Getter of the news parameter
+        
+        Returns:
+            The list of news as dictionaries.
+        """
+        if not self.news:
+            print("The news have not been fetched yet. Use \"NewsFetcher.fetch()\" first!")
+
+        return self.news
+
+
     def read_newspaper(self, newspaper_id: str, config: dict[dict]) -> list[dict]:
         """Reads a single RSS feed and extracts the news
 
