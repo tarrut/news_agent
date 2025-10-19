@@ -29,7 +29,7 @@ class NewsFetcher:
         Returns:
             The list of news as dictionaries.
         """
-        if self.news:
+        if self.selected_news:
             return self.selected_news
             
         print("The news have not been fetched yet. Use \"NewsFetcher.fetch()\" first!")
