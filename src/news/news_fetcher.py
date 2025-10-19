@@ -29,11 +29,11 @@ class NewsFetcher:
         Returns:
             The list of news as dictionaries.
         """
-        if not self.news:
-            print("The news have not been fetched yet. Use \"NewsFetcher.fetch()\" first!")
-
-        return self.news
-
+        if self.news:
+            return self.selected_news
+            
+        print("The news have not been fetched yet. Use \"NewsFetcher.fetch()\" first!")
+        return
 
     def read_newspaper(self, newspaper_id: str, config: dict[dict]) -> list[dict]:
         """Reads a single RSS feed and extracts the news

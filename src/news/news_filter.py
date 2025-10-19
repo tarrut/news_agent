@@ -38,3 +38,16 @@ class NewsFilter:
                 "newspaper": new.get("newspaper")
             }
             id += 1
+
+    def get_news(self):
+        """Getter of the news parameter
+        
+        Returns:
+            The dictionary of news as dictionaries.
+        """
+
+        if self.news:
+            return self.news
+        
+        print("The news have not been filtered yet. Use \"NewsFilter.filter()\" first.")
+        return
